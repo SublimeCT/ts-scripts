@@ -1,0 +1,2 @@
+# ts-scripts
+TypeScript library
