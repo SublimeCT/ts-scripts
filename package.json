@@ -1,0 +1,23 @@
+{
+    "name": "js-shells",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "bin": {
+        "sven": "./lib/sven.js"
+    },
+    "dependencies": {
+        "inquirer": "^6.2.0",
+        "yargs": "^12.0.2"
+    },
+    "scripts": {
+        "build": "tsc",
+        "dev": "tsc -w",
+        "use": "tsc && sven",
+        "prepare": "npm run build"
+    },
+    "devDependencies": {
+        "@types/inquirer": "^0.0.43",
+        "@types/yargs": "^12.0.1"
+    }
+}
