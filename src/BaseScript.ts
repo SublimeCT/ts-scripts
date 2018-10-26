@@ -1,10 +1,8 @@
-import { Questions } from "inquirer";
-
 /**
  * 命令行脚本接口
  */
 interface Script {
-    describe: Questions<any>
+    readonly DESCRIBE: string
 }
 
 /**
@@ -17,5 +15,6 @@ class BaseScript {
 }
 
 export {
-    BaseScript
+    BaseScript,
+    Script
 }
