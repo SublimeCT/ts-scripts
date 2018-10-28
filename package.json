@@ -19,7 +19,8 @@
     "devDependencies": {
         "@types/inquirer": "^0.0.43",
         "@types/yargs": "^12.0.1",
-        "cz-conventional-changelog": "^2.1.0"
+        "cz-conventional-changelog": "^2.1.0",
+        "dayjs": "^1.7.7"
     },
     "config": {
         "commitizen": {
