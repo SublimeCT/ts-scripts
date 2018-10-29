@@ -1,4 +1,4 @@
-import { Argv } from "yargs";
+import { Argv } from "yargs"
 
 /**
  * 命令行脚本接口
@@ -8,20 +8,20 @@ import { Argv } from "yargs";
  */
 abstract class Script {
     public static readonly DESCRIBE: string
+    public static readonly CMD: string[]
     public abstract exec (argv: Argv): any
 }
 
 /**
- * 命令行脚本基类
- * 
- * @class BaseScript
- * @extends {Script}
+ * 脚本列表
+ *
+ * @interface ScriptList
  */
-class BaseScript {
-    public readonly DESCRIBE: string = 'This is test command'
+interface ScriptList {
+    [name: string]: Script
 }
 
 export {
-    BaseScript,
-    Script
+    Script,
+    ScriptList
 }

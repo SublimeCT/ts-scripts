@@ -1,4 +1,4 @@
-import { BaseScript } from '../../src/BaseScript'
+import { Script } from '../../src/BaseScript'
 import { Argv } from 'yargs'
 import Day from 'dayjs'
 
@@ -6,10 +6,11 @@ import Day from 'dayjs'
  * 打印日期时间信息
  *
  * @class DateTool
- * @extends {BaseScript}
+ * @extends {Script}
  */
-class DateTool extends BaseScript {
+class DateTool extends Script {
     public static readonly DESCRIBE: string = 'Print some info about date/time.'
+    public static readonly CMD: string[] = ['date']
     constructor () {
         super()
     }

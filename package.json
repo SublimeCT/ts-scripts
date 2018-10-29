@@ -13,7 +13,7 @@
     "scripts": {
         "build": "tsc",
         "dev": "tsc -w",
-        "use": "tsc && sven",
+        "use": "ts-node sven",
         "prepare": "npm run build"
     },
     "devDependencies": {
