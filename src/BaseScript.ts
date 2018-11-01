@@ -6,10 +6,14 @@ import { Argv } from "yargs"
  * @abstract
  * @class Script
  */
-abstract class Script {
-    public static readonly DESCRIBE: string
-    public static readonly CMD: string[]
+abstract class BaseScript {
     public abstract exec (argv: Argv): any
+}
+
+interface Script {
+    readonly CMD: string[]
+    readonly DESCRIBE: string,
+    Script: BaseScript
 }
 
 /**
@@ -22,6 +26,7 @@ interface ScriptList {
 }
 
 export {
+    BaseScript,
     Script,
     ScriptList
 }

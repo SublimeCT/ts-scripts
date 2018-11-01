@@ -1,4 +1,4 @@
-import { Script } from '../../src/BaseScript'
+import { BaseScript } from '../../src/BaseScript'
 import { Argv } from 'yargs'
 
 /**
@@ -7,9 +7,9 @@ import { Argv } from 'yargs'
  * @class Test
  * @extends {Script}
  */
-class Test extends Script {
-    public static readonly DESCRIBE: string = 'This is test command'
+class Test extends BaseScript {
     public static readonly CMD: string[] = ['test']
+    public static readonly DESCRIBE: string = 'This is test command'
     constructor () {
         super()
     }

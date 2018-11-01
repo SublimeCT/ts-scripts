@@ -1,6 +1,7 @@
-import { Script } from '../../src/BaseScript'
+import { BaseScript } from '../../src/BaseScript'
 import { Argv } from 'yargs'
 import Day from 'dayjs'
+import colors from 'colors'
 
 /**
  * 打印日期时间信息
@@ -8,15 +9,17 @@ import Day from 'dayjs'
  * @class DateTool
  * @extends {Script}
  */
-class DateTool extends Script {
-    public static readonly DESCRIBE: string = 'Print some info about date/time.'
+class DateTool extends BaseScript {
     public static readonly CMD: string[] = ['date']
+    public static readonly DESCRIBE: string = 'Print some info about date/time.'
     constructor () {
         super()
     }
     public exec (argv: Argv) {
-        const lines: string[] = ['']
-        console.log('Date/time: %c', Day().format('YYYY'), 'color: red')
+        console.log(colors.yellow.bgBlue.dim('Date/time: ' + Day().format('YYYY-MM-DD HH:mm:ss')))
+        console.log(colors.blue.bgCyan.italic('week: ' + Day().format('dddd')))
+        console.log(colors.green.bgWhite.italic('millisecond: ' + Day().valueOf()))
+        console.log(colors.white.bgGreen.italic('second: ' + Day().unix()))
     }
 }
 

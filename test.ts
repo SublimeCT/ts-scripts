@@ -1,20 +1,7 @@
-abstract class TestAbstract {
-    public abstract NAME: string
-}
+import yargs from 'yargs'
 
-interface List {
-    [name: string]: TestAbstract
-}
+yargs.command(['all', 'list', 'ls'], 'test command', {}, args => {
+    console.log(args)
+}).argv
 
-class Test extends TestAbstract {
-    public NAME: string;
-    
-}
-
-const test: TestAbstract = new Test
-
-const list:List = {
-    test: Test
-}
-
-console.log(test)
+console.log('==========')

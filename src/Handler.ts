@@ -1,43 +1,60 @@
 import inquirer from 'inquirer'
 import yargs, { Argv } from 'yargs'
-import scripts from '../scripts/index'
-import { ScriptList } from './BaseScript'
+import Test from '../scripts/test'
+import DateTool from '../scripts/date'
+import { ScriptList, BaseScript } from './BaseScript'
 import Env from './Env'
 
 class Handler {
-    private readonly scriptsList:ScriptList = scripts
-    constructor (public arg: Argv = yargs) {
-        // console.log(this.NAME)
-    }
+    /**
+     * 全部命令
+     * @private
+     * @memberof Handler
+     */
+    private readonly commands = [ Test, DateTool ]
+    constructor () { }
     public init(): void {
-        this._fetchDescribe(yargs)
-        const argv = yargs.command(['all', 'list', 'ls'], 'show sctipt list', {}, args => {
-            this._showScriptList(args)
-        })
-        .help('h')
-        .argv
-        this._fetchCommand(yargs)
+        this._registMain()
+        this._registChild()
+    }
+    /**
+     * 主命令参数处理
+     */
+    private _registMain () {
+        // 加入 help 信息
+        const _scripts = this.commands.map(cmd => cmd.name)
+        yargs.option('l', { describe: 'show script list', type: 'boolean' })
+            .usage('Usage: ' + Env.NAME + ' [' + _scripts.join('|') + '] | l')
+            .alias('h', 'help')
         // use sven -l to show list
-        if (argv._.length === 0 && Reflect.has(argv, 'l')) {
-            this._showScriptList(argv)
+        if (yargs.argv._.length === 0 && Reflect.has(yargs.argv, 'l')) {
+            this._showScriptList(yargs.argv)
         }
     }
-    private _fetchDescribe (argv: yargs.Argv):void {
-        const _scripts = Object.keys(scripts).join('|')
-        argv.option('l', {
-            describe: 'show script list',
-            type: 'boolean'
-        }).usage('Usage: ' + Env.NAME + ' [' + _scripts + '] | l')
+    /**
+     * 注册子命令
+     */
+    private _registChild () {
+        // show commands
+        yargs.command(['all', 'list', 'ls'], 'show sctipt list', {}, args => {
+            this._showScriptList(args)
+        }).argv
+        // 注册其他子命令
+        this._registerCommand()
     }
     private _showScriptList (argv: yargs.Argv | yargs.Arguments):void {
-        for (let name in this.scriptsList) {
-            console.log('\tname: ' + name + '; description: ' + this.scriptsList[name].DESCRIBE)
+        for (let name in this.commands) {
+            const { CMD, DESCRIBE } = this.commands[name]
+            console.log('\t> ' + CMD.join('|') + ' >>> description: ' + DESCRIBE)
         }
     }
-    private _fetchCommand (argv: yargs.Argv):void {
-        for (let cmd in scripts) {
-            // const { CMD, DESCRIBE } = scripts[cmd]
-            // argv.command(CMD, DESCRIBE)
+    private _registerCommand ():void {
+        for (let name in this.commands) {
+            const { CMD, DESCRIBE } = this.commands[name]
+            yargs.command(CMD, DESCRIBE, {}, args => {
+                (new this.commands[name]()).exec(yargs)
+                return yargs.argv
+            }).argv
         }
     }
     private async _test(): Promise<void> {
