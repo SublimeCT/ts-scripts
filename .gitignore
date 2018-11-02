@@ -1,7 +1,7 @@
 /lib
 yarn.lock
 LICENSE
-.env
+./config.ts
 
 #########################
 
