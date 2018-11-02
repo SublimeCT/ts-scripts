@@ -4,13 +4,13 @@ TypeScript library
 ## install
 
 ```bash
-# 首先要全局安装 typescript
-➜  ts-scripts git:(master) ✗ yarn global add typescript
+# install typescript & ts-node
+➜  ts-scripts git:(master) ✗ yarn global add typescript ts-node
 ➜  ts-scripts git:(master) ✗ yarn
-# 可能需要执行一下 chmod 赋予执行权限
+# set entry file permission
 ➜  ts-scripts git:(master) ✗ sudo chmod 744 sven.ts
 ➜  ts-scripts git:(master) ✗ yarn link
-# or yarn run use
+# or execute tsc to build command
 ➜  ts-scripts git:(master) ✗ ts-node sven
 ```
 
@@ -18,3 +18,8 @@ TypeScript library
 ```bash
 ➜  ts-scripts git:(master) ✗ sven -h
 ```
+
+## OCR
+- create `./config.ts` to support OCR option
+- [baidu OCR document](http://ai.baidu.com/docs#/OCR-Node-SDK/top)
+- create `./scripts/ocr/sdk.d.ts`, and append to `tsconfig.json` => `include`

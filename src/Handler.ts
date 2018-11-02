@@ -2,7 +2,8 @@ import inquirer from 'inquirer'
 import yargs, { Argv } from 'yargs'
 import Test from '../scripts/test'
 import DateTool from '../scripts/date'
-import { ScriptList, BaseScript } from './BaseScript'
+import OCR from '../scripts/ocr'
+import { BaseScript } from './BaseScript'
 import Env from './Env'
 
 class Handler {
@@ -11,7 +12,7 @@ class Handler {
      * @private
      * @memberof Handler
      */
-    private readonly commands = [ Test, DateTool ]
+    private readonly commands = [ Test, DateTool, OCR ]
     constructor () { }
     public init(): void {
         this._registMain()

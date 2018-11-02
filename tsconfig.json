@@ -57,6 +57,7 @@
     ],
     "include": [
         "src/**/*.ts",
-        "./sven.ts"
+        "./sven.ts",
+        "./scripts/ocr/sdk.d.ts"
     ]
 }

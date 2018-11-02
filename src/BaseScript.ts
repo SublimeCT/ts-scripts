@@ -16,17 +16,7 @@ interface Script {
     Script: BaseScript
 }
 
-/**
- * 脚本列表
- *
- * @interface ScriptList
- */
-interface ScriptList {
-    [name: string]: Script
-}
-
 export {
     BaseScript,
-    Script,
-    ScriptList
+    Script
 }
